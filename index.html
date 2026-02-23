@@ -261,6 +261,99 @@
       z-index: 1;
     }
 
+    /* ===== INTRODUCTION SLIDE - HERO LAYOUT ===== */
+    .slide-introduction { padding: 0; }
+    .slide-introduction .slide-inner {
+      transform: scale(1.0);
+      justify-content: flex-start;
+      padding-top: 0;
+      max-width: none;
+      width: 100%;
+    }
+    .intro-hero {
+      width: 100vw;
+      max-width: none;
+      height: 75vh;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .intro-hero-collage {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      animation: scrollCarousel 40s linear infinite;
+    }
+    .intro-hero-collage img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    @keyframes scrollCarousel {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .intro-hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg,
+        rgba(0, 61, 121, 0.25) 0%,
+        rgba(0, 0, 0, 0.05) 30%,
+        rgba(0, 0, 0, 0.05) 60%,
+        rgba(0, 0, 0, 0.2) 100%
+      );
+      pointer-events: none;
+    }
+    .intro-hero-logo {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 20px 48px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .intro-hero-logo img {
+      height: 60px;
+      width: auto;
+      display: block;
+    }
+    .intro-content {
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .intro-pitch {
+      font-size: 18px;
+      color: var(--text-dark);
+      line-height: 1.7;
+      margin: 0;
+      font-weight: 400;
+    }
+    /* Introduction slide animations */
+    .slide-introduction.active .intro-hero-logo {
+      animation: fadeInUpCentered 0.6s ease 0.3s forwards;
+      opacity: 0;
+    }
+    @keyframes fadeInUpCentered {
+      from { opacity: 0; transform: translateX(-50%) translateY(25px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    .slide-introduction.active .intro-pitch {
+      animation: fadeInUp 0.5s ease 0.6s forwards;
+      opacity: 0;
+    }
+
     /* ===== OVERVIEW TITLE LOGO (intro slides only) ===== */
     .overview-logo {
       height: 120px; margin-bottom: 50px;
@@ -1019,14 +1112,25 @@
     <!-- ========================================== -->
 
     <!-- 2. MAP - Chapter -->
-    <section class="slide chapter" data-slide="2">
-      <div class="chapter-layout">
-        <div class="chapter-left">
-          <div class="chapter-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/ayming-map-vertical.svg" alt="Ayming MAP"></div>
-          <p class="chapter-domain">Finance &amp; Fiscalité</p>
+    <section class="slide slide-introduction" data-slide="2">
+      <div class="slide-inner">
+        <div class="intro-hero">
+          <div class="intro-hero-collage">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/map/evaluation-parc.jpeg" alt="Évaluation du parc immobilier">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/map/centralisation-donnees.jpeg" alt="Centralisation des données">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/map/pilotage-taxes.jpeg" alt="Pilotage des taxes locales">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/map/aide-decision.jpeg" alt="Aide à la décision">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/map/evaluation-parc.jpeg" alt="Évaluation du parc immobilier">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/map/centralisation-donnees.jpeg" alt="Centralisation des données">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/map/pilotage-taxes.jpeg" alt="Pilotage des taxes locales">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/map/aide-decision.jpeg" alt="Aide à la décision">
+          </div>
+          <div class="intro-hero-logo">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/map-logo.svg" alt="Ayming MAP">
+          </div>
         </div>
-        <div class="chapter-right">
-          <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/chapters/map-building.jpeg" alt="">
+        <div class="intro-content">
+          <p class="intro-pitch">Ayming MAP est un outil SaaS de gestion et de cartographie du parc immobilier dédié au pilotage de la fiscalité locale.</p>
         </div>
       </div>
     </section>
@@ -1205,14 +1309,23 @@
     <!-- ========================================== -->
 
     <!-- 8. Drive - Chapter -->
-    <section class="slide chapter" data-slide="11">
-      <div class="chapter-layout">
-        <div class="chapter-left">
-          <div class="chapter-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/ayming-drive-vertical.svg" alt="Ayming Drive"></div>
-          <p class="chapter-domain">Pilotage du CIR</p>
+    <section class="slide slide-introduction" data-slide="11">
+      <div class="slide-inner">
+        <div class="intro-hero">
+          <div class="intro-hero-collage">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/piloter-temps-reel.jpeg" alt="Piloter en temps réel">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/aligner-finance-rd.jpeg" alt="Aligner Finance et R&D">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/securiser-dossier-cir.jpeg" alt="Constituer un dossier CIR solide">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/piloter-temps-reel.jpeg" alt="Piloter en temps réel">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/aligner-finance-rd.jpeg" alt="Aligner Finance et R&D">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/securiser-dossier-cir.jpeg" alt="Constituer un dossier CIR solide">
+          </div>
+          <div class="intro-hero-logo">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/drive-logo.svg" alt="Ayming Drive">
+          </div>
         </div>
-        <div class="chapter-right">
-          <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/chapters/drive-finance.jpeg" alt="">
+        <div class="intro-content">
+          <p class="intro-pitch">Ayming Drive est une solution digitale pour simplifier le process de Crédit d'Impôt Recherche. Les équipes Finance et R&amp;D collaborent, alignent leurs objectifs et travaillent en temps réel.</p>
         </div>
       </div>
     </section>
@@ -1367,14 +1480,25 @@
     <!-- ========================================== -->
 
     <!-- 14. Collecte - Chapter -->
-    <section class="slide chapter" data-slide="20">
-      <div class="chapter-layout">
-        <div class="chapter-left">
-          <div class="chapter-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/ayming-collecte-vertical.svg" alt="Ayming Collecte"></div>
-          <p class="chapter-domain">Operations &amp; Collecte</p>
+    <section class="slide slide-introduction" data-slide="20">
+      <div class="slide-inner">
+        <div class="intro-hero">
+          <div class="intro-hero-collage">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/collecter.jpg" alt="Collecte centralisée">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/relances.jpg" alt="Relances automatiques">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/exporting-at.jpg" alt="Export paie">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/workflow.png" alt="Workflow Collecte">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/collecter.jpg" alt="Collecte centralisée">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/relances.jpg" alt="Relances automatiques">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/exporting-at.jpg" alt="Export paie">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/workflow.png" alt="Workflow Collecte">
+          </div>
+          <div class="intro-hero-logo">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/collecte-logo.svg" alt="Ayming Collecte">
+          </div>
         </div>
-        <div class="chapter-right">
-          <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/chapters/collecte-office.jpeg" alt="">
+        <div class="intro-content">
+          <p class="intro-pitch">Ayming Collecte centralise la collecte, le contrôle et la transmission des arrêts de travail dans un flux unique et fiable.</p>
         </div>
       </div>
     </section>
@@ -1583,14 +1707,29 @@
     <!-- ========================================== -->
 
     <!-- 20. Acciline+ - Chapter -->
-    <section class="slide chapter" data-slide="30">
-      <div class="chapter-layout">
-        <div class="chapter-left">
-          <div class="chapter-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/acciline-logo.svg" alt="Acciline+"></div>
-          <p class="chapter-domain">HSE &amp; Prévention</p>
+    <section class="slide slide-introduction" data-slide="30">
+      <div class="slide-inner">
+        <div class="intro-hero">
+          <div class="intro-hero-collage">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/duerp.png" alt="Évaluation des risques">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/evenements.png" alt="Gestion des événements">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/plans-actions.png" alt="Plans d'actions">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/audits.png" alt="Audit et inspection">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/epi.png" alt="Gestion EPI/EPC">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/formations.png" alt="Formation et certifications">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/duerp.png" alt="Évaluation des risques">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/evenements.png" alt="Gestion des événements">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/plans-actions.png" alt="Plans d'actions">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/audits.png" alt="Audit et inspection">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/epi.png" alt="Gestion EPI/EPC">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/acciline/formations.png" alt="Formation et certifications">
+          </div>
+          <div class="intro-hero-logo">
+            <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/acciline-logo.svg" alt="Acciline+">
+          </div>
         </div>
-        <div class="chapter-right">
-          <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/chapters/acciline-construction.jpeg" alt="">
+        <div class="intro-content">
+          <p class="intro-pitch">Acciline+ est une plateforme SaaS dédiée à la gestion HSE et à la prévention des risques professionnels.</p>
         </div>
       </div>
     </section>
