@@ -632,9 +632,25 @@
       width: 220px; height: 270px;
       object-fit: cover; border-radius: 14px; margin-bottom: 20px;
       filter: drop-shadow(0 6px 16px rgba(0,0,0,0.10));
+      image-rendering: auto;
+      -webkit-image-rendering: auto;
     }
     .icp-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
     .icp-card p { font-size: 13px; color: var(--text-gray); line-height: 1.6; max-width: 300px; }
+
+    /* ICP slide gradient background */
+    .slide.slide-icp {
+      background: radial-gradient(ellipse at 30% 20%, rgba(17,169,230,0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 80%, rgba(10,179,140,0.08) 0%, transparent 50%),
+                  var(--bg-white) !important;
+    }
+
+    /* ICP animations */
+    .slide.active .icp-title { animation: fadeInUp 0.5s ease 0.1s forwards; opacity: 0; }
+    .slide.active .icp-card { animation: fadeInUp 0.5s ease forwards; opacity: 0; }
+    .slide.active .icp-card:nth-child(1) { animation-delay: 0.2s; }
+    .slide.active .icp-card:nth-child(2) { animation-delay: 0.35s; }
+    .slide.active .icp-card:nth-child(3) { animation-delay: 0.5s; }
 
     /* Visual placeholder for tools without screenshots */
     .vd-visual-block {
@@ -913,6 +929,78 @@
     .closing-contact span { font-weight: 600; }
     .closing-contact a { color: white; text-decoration: none; opacity: 0.8; }
     .closing-contact a:hover { opacity: 1; text-decoration: underline; }
+    /* ===== ABOUT ME SLIDE ===== */
+    .slide.about-me { padding: 0; }
+    .about-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      width: 100%; height: 100%;
+    }
+    .about-left {
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 80px 80px 80px 100px;
+    }
+    .about-name {
+      font-size: 44px; font-weight: 700; line-height: 1.15;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--gradient-blue-start), var(--gradient-green-end));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .about-role {
+      font-size: 18px; font-weight: 500; color: var(--blue-primary);
+      margin-bottom: 40px;
+    }
+    .about-section-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--text-light); margin-bottom: 12px;
+    }
+    .about-text {
+      font-size: 16px; color: var(--text-gray); line-height: 1.7; max-width: 480px;
+    }
+    .about-highlights {
+      display: flex; gap: 32px; margin-top: 40px;
+    }
+    .about-highlight {
+      text-align: center;
+    }
+    .about-highlight-value {
+      font-size: 32px; font-weight: 700;
+      background: var(--gradient-brand-horizontal);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .about-highlight-label {
+      font-size: 12px; color: var(--text-light); margin-top: 4px;
+    }
+    .about-right {
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, var(--gradient-blue-start), var(--gradient-green-end));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-right::before {
+      content: ''; position: absolute;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      top: -60px; right: -80px;
+    }
+    .about-right::after {
+      content: ''; position: absolute;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      bottom: -40px; left: -60px;
+    }
+    .about-photo {
+      width: 380px; height: 380px; border-radius: 50%;
+      object-fit: cover; object-position: center top;
+      border: 6px solid rgba(255,255,255,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      position: relative; z-index: 1;
+    }
+    .slide.about-me.active .about-name { animation: fadeInUp 0.5s ease 0.1s forwards; opacity: 0; }
+    .slide.about-me.active .about-role { animation: fadeInUp 0.5s ease 0.2s forwards; opacity: 0; }
+    .slide.about-me.active .about-section-label { animation: fadeInUp 0.5s ease 0.3s forwards; opacity: 0; }
+    .slide.about-me.active .about-text { animation: fadeInUp 0.5s ease 0.4s forwards; opacity: 0; }
+    .slide.about-me.active .about-highlights { animation: fadeInUp 0.5s ease 0.5s forwards; opacity: 0; }
+    .slide.about-me.active .about-photo { animation: fadeInUp 0.6s ease 0.2s forwards; opacity: 0; }
+
     #confetti-canvas {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       pointer-events: none; z-index: 99999;
@@ -948,6 +1036,10 @@
     .slide.active .value-detail-content h2 { animation: fadeInUp 0.5s ease forwards; }
     .slide.active .slide-subtitle,
     .slide.active .cover-subtitle { animation: fadeInUp 0.5s ease 0.1s forwards; opacity: 0; }
+    .slide.chapter.active .chapter-logo { animation: fadeInUp 0.6s ease 0.1s forwards; opacity: 0; }
+    .slide.chapter.active .chapter-domain { animation: fadeInUp 0.5s ease 0.3s forwards; opacity: 0; }
+    .slide.chapter.active .chapter-right img { animation: fadeIn 0.8s ease 0.2s forwards; opacity: 0; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .slide.active .feature-item,
     .slide.active .eco-pill,
     .slide.active .who-card { animation: fadeInUp 0.5s ease forwards; opacity: 0; }
@@ -1030,23 +1122,24 @@
     <div class="nav-section">
       <div class="nav-section-title">Panorama</div>
       <div class="nav-item active" data-slide="0"><span class="nav-item-number">01</span>Couverture</div>
-      <div class="nav-item" data-slide="1"><span class="nav-item-number">02</span>Solutions SaaS</div>
+      <div class="nav-item" data-slide="1"><span class="nav-item-number">02</span>Qui suis-je</div>
+      <div class="nav-item" data-slide="2"><span class="nav-item-number">03</span>Solutions SaaS</div>
     </div>
     <div class="nav-section">
       <div class="nav-section-title">Nos Outils</div>
-      <div class="nav-item" data-slide="2"><span class="nav-item-number">03</span>Ayming MAP</div>
-      <div class="nav-item" data-slide="11"><span class="nav-item-number">04</span>Ayming Drive</div>
-      <div class="nav-item" data-slide="20"><span class="nav-item-number">05</span>Ayming Collecte</div>
-      <div class="nav-item" data-slide="30"><span class="nav-item-number">06</span>Acciline+</div>
+      <div class="nav-item" data-slide="3"><span class="nav-item-number">04</span>Ayming MAP</div>
+      <div class="nav-item" data-slide="12"><span class="nav-item-number">05</span>Ayming Drive</div>
+      <div class="nav-item" data-slide="21"><span class="nav-item-number">06</span>Ayming Collecte</div>
+      <div class="nav-item" data-slide="31"><span class="nav-item-number">07</span>Acciline+</div>
     </div>
     <div class="nav-section">
       <div class="nav-section-title">Fiches Outils</div>
-      <div class="nav-item" data-slide="42"><span class="nav-item-number">07</span>Fiche MAP</div>
-      <div class="nav-item" data-slide="43"><span class="nav-item-number">08</span>Fiche Drive</div>
-      <div class="nav-item" data-slide="44"><span class="nav-item-number">09</span>Fiche Collecte</div>
-      <div class="nav-item" data-slide="45"><span class="nav-item-number">10</span>Fiche Acciline+</div>
-      <div class="nav-item" data-slide="46"><span class="nav-item-number">11</span>Prochaines etapes</div>
-      <div class="nav-item" data-slide="47"><span class="nav-item-number">12</span>Merci</div>
+      <div class="nav-item" data-slide="43"><span class="nav-item-number">08</span>Fiche MAP</div>
+      <div class="nav-item" data-slide="44"><span class="nav-item-number">09</span>Fiche Drive</div>
+      <div class="nav-item" data-slide="45"><span class="nav-item-number">10</span>Fiche Collecte</div>
+      <div class="nav-item" data-slide="46"><span class="nav-item-number">11</span>Fiche Acciline+</div>
+      <div class="nav-item" data-slide="47"><span class="nav-item-number">12</span>Prochaines etapes</div>
+      <div class="nav-item" data-slide="48"><span class="nav-item-number">13</span>Merci</div>
     </div>
     <div class="nav-contact">
       <a href="mailto:jencarnacion@ayming.com?subject=Ecosyst%C3%A8me%20Digital%20Ayming%20-%20Question%20%2F%20Feedback" target="_blank">
@@ -1074,8 +1167,24 @@
       </div>
     </section>
 
+    <!-- ===== ABOUT ME ===== -->
+    <section class="slide about-me" data-slide="1">
+      <div class="about-layout">
+        <div class="about-left">
+          <h1 class="about-name">José J. Encarnación Saiter</h1>
+          <p class="about-role">Product Marketing Manager, Offre RH</p>
+          <p class="about-section-label">A propos</p>
+          <p class="about-text">Chez Ayming depuis 2019, j'ai géré les sites web groupe en support des équipes marketing locales, coordonné le volet marketing du projet One Salesforce, puis construit la stratégie marketing et repositionné Acciline+ au sein d'Ayming Digital.</p>
+          <p class="about-text" style="margin-top: 24px; font-weight: 600; color: var(--text-dark);">Aujourd'hui, je structure et fais grandir l'ensemble de l'offre RH en tant que Product Marketing Manager.</p>
+        </div>
+        <div class="about-right">
+          <img class="about-photo" src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/team/jencarnacion.png" alt="José J. Encarnación Saiter">
+        </div>
+      </div>
+    </section>
+
     <!-- ===== 1. SOLUTIONS SAAS OVERVIEW ===== -->
-    <section class="slide" data-slide="1">
+    <section class="slide" data-slide="2">
       <div class="saas-layout">
         <h2>Solutions Ayming en mode SaaS</h2>
         <div class="saas-tools-row">
@@ -1112,7 +1221,7 @@
     <!-- ========================================== -->
 
     <!-- 2. MAP - Chapter -->
-    <section class="slide chapter" data-slide="2">
+    <section class="slide chapter" data-slide="3">
       <div class="chapter-layout">
         <div class="chapter-left">
           <div class="chapter-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/ayming-map-vertical.svg" alt="Ayming MAP"></div>
@@ -1125,7 +1234,7 @@
     </section>
 
     <!-- MAP - Struggles -->
-    <section class="slide" data-slide="3">
+    <section class="slide" data-slide="4">
       <div class="slide-inner">
         <h1 class="slide-title">La fiscalité locale multi-sites, un casse-tête</h1>
         <div class="struggles-grid">
@@ -1150,7 +1259,7 @@
     </section>
 
     <!-- MAP - C'est quoi -->
-    <section class="slide slide-introduction" data-slide="4">
+    <section class="slide slide-introduction" data-slide="5">
       <div class="slide-inner">
         <div class="intro-hero">
           <div class="intro-hero-collage">
@@ -1168,14 +1277,14 @@
           </div>
         </div>
         <div class="intro-content">
-          <p class="intro-pitch">Ayming MAP est un outil SaaS de gestion et de cartographie du parc immobilier dédié au pilotage de la fiscalité locale.</p>
+          <p class="intro-pitch">Ayming MAP est une plateforme de gestion du parc immobilier qui permet aux directions financières de piloter leur fiscalité locale.</p>
         </div>
       </div>
     </section>
 
 
     <!-- 4. MAP - Value Overview -->
-    <section class="slide" data-slide="5">
+    <section class="slide" data-slide="6">
       <div class="slide-inner">
         <h1 class="slide-title">Piloter la fiscalité locale</h1>
         <div class="feature-grid-4">
@@ -1201,7 +1310,7 @@
     </section>
 
     <!-- 4. MAP - Detail: Évaluation du parc immobilier -->
-    <section class="slide" data-slide="6" data-chapter="map-1">
+    <section class="slide" data-slide="7" data-chapter="map-1">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Évaluation du parc immobilier</h2>
@@ -1221,7 +1330,7 @@
     </section>
 
     <!-- 5. MAP - Detail: Centralisation des données -->
-    <section class="slide" data-slide="7" data-chapter="map-2">
+    <section class="slide" data-slide="8" data-chapter="map-2">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Centralisation des données</h2>
@@ -1242,7 +1351,7 @@
     </section>
 
     <!-- 6. MAP - Detail: Pilotage des taxes locales -->
-    <section class="slide" data-slide="8" data-chapter="map-3">
+    <section class="slide" data-slide="9" data-chapter="map-3">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Pilotage des taxes locales</h2>
@@ -1262,7 +1371,7 @@
     </section>
 
     <!-- 7. MAP - Detail: Aide à la décision -->
-    <section class="slide" data-slide="9" data-chapter="map-4">
+    <section class="slide" data-slide="10" data-chapter="map-4">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Aide à la décision</h2>
@@ -1282,7 +1391,7 @@
     </section>
 
     <!-- MAP - ICP -->
-    <section class="slide" data-slide="10">
+    <section class="slide slide-icp" data-slide="11">
       <div class="slide-inner">
         <div class="icp-layout">
           <h2 class="icp-title">Ayming MAP est conçu pour qui ?</h2>
@@ -1313,7 +1422,7 @@
     <!-- ========================================== -->
 
     <!-- 8. Drive - Chapter -->
-    <section class="slide chapter" data-slide="11">
+    <section class="slide chapter" data-slide="12">
       <div class="chapter-layout">
         <div class="chapter-left">
           <div class="chapter-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/ayming-drive-vertical.svg" alt="Ayming Drive"></div>
@@ -1326,7 +1435,7 @@
     </section>
 
     <!-- Drive - Struggles -->
-    <section class="slide" data-slide="12">
+    <section class="slide" data-slide="13">
       <div class="slide-inner">
         <h1 class="slide-title">Le process CIR, un casse-tête entre Finance et R&amp;D</h1>
         <div class="struggles-grid">
@@ -1351,7 +1460,7 @@
     </section>
 
     <!-- Drive - C'est quoi -->
-    <section class="slide slide-introduction" data-slide="13">
+    <section class="slide slide-introduction" data-slide="14">
       <div class="slide-inner">
         <div class="intro-hero">
           <div class="intro-hero-collage">
@@ -1367,14 +1476,14 @@
           </div>
         </div>
         <div class="intro-content">
-          <p class="intro-pitch">Ayming Drive est une solution digitale pour simplifier le process de Crédit d'Impôt Recherche. Les équipes Finance et R&amp;D collaborent, alignent leurs objectifs et travaillent en temps réel.</p>
+          <p class="intro-pitch">Ayming Drive est une plateforme collaborative qui permet aux équipes Finance et R&amp;D de piloter ensemble leur Crédit d'Impôt Recherche.</p>
         </div>
       </div>
     </section>
 
 
     <!-- 11. Drive - Value Overview -->
-    <section class="slide" data-slide="14">
+    <section class="slide" data-slide="15">
       <div class="slide-inner">
         <h1 class="slide-title">Simplifier le pilotage du CIR</h1>
         <div class="feature-grid-3">
@@ -1396,7 +1505,7 @@
     </section>
 
     <!-- 10. Drive - Detail: Piloter en temps réel -->
-    <section class="slide" data-slide="15" data-chapter="drive-1">
+    <section class="slide" data-slide="16" data-chapter="drive-1">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Piloter en temps réel</h2>
@@ -1416,7 +1525,7 @@
     </section>
 
     <!-- 11. Drive - Detail: Aligner Finance et R&D -->
-    <section class="slide" data-slide="16" data-chapter="drive-2">
+    <section class="slide" data-slide="17" data-chapter="drive-2">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Aligner Finance et R&amp;D</h2>
@@ -1436,7 +1545,7 @@
     </section>
 
     <!-- 12. Drive - Detail: Constituer un dossier solide -->
-    <section class="slide" data-slide="17" data-chapter="drive-3">
+    <section class="slide" data-slide="18" data-chapter="drive-3">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Constituer un dossier solide</h2>
@@ -1457,7 +1566,7 @@
     </section>
 
     <!-- Drive - ICP -->
-    <section class="slide" data-slide="19">
+    <section class="slide slide-icp" data-slide="20">
       <div class="slide-inner">
         <div class="icp-layout">
           <h2 class="icp-title">Ayming Drive est conçu pour qui ?</h2>
@@ -1488,7 +1597,7 @@
     <!-- ========================================== -->
 
     <!-- 14. Collecte - Chapter -->
-    <section class="slide chapter" data-slide="20">
+    <section class="slide chapter" data-slide="21">
       <div class="chapter-layout">
         <div class="chapter-left">
           <div class="chapter-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/ayming-collecte-vertical.svg" alt="Ayming Collecte"></div>
@@ -1501,7 +1610,7 @@
     </section>
 
     <!-- Collecte - Struggles -->
-    <section class="slide" data-slide="21">
+    <section class="slide" data-slide="22">
       <div class="slide-inner">
         <h1 class="slide-title">Les arrêts de travail, un flux multi-canal incontrôlé</h1>
         <div class="struggles-grid">
@@ -1526,7 +1635,7 @@
     </section>
 
     <!-- Collecte - C'est quoi -->
-    <section class="slide slide-introduction" data-slide="22">
+    <section class="slide slide-introduction" data-slide="23">
       <div class="slide-inner">
         <div class="intro-hero">
           <div class="intro-hero-collage">
@@ -1544,14 +1653,14 @@
           </div>
         </div>
         <div class="intro-content">
-          <p class="intro-pitch">Ayming Collecte centralise la collecte, le contrôle et la transmission des arrêts de travail dans un flux unique et fiable.</p>
+          <p class="intro-pitch">Ayming Collecte centralise la réception, le contrôle et la transmission des arrêts de travail dans un flux unique et fiable.</p>
         </div>
       </div>
     </section>
 
 
     <!-- 18. Collecte - Value Overview -->
-    <section class="slide" data-slide="23">
+    <section class="slide" data-slide="24">
       <div class="slide-inner">
         <h1 class="slide-title">Fiabiliser la collecte des arrêts de travail</h1>
         <div class="feature-grid-3">
@@ -1573,7 +1682,7 @@
     </section>
 
     <!-- 16. Collecte - Detail: Structuration des demandes -->
-    <section class="slide" data-slide="24" data-chapter="collecte-1">
+    <section class="slide" data-slide="25" data-chapter="collecte-1">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Point d'entrée unique pour tous les arrêts</h2>
@@ -1593,7 +1702,7 @@
     </section>
 
     <!-- Collecte - Detail: Contrôle conformité + relances -->
-    <section class="slide" data-slide="25" data-chapter="collecte-2">
+    <section class="slide" data-slide="26" data-chapter="collecte-2">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Contrôle de conformité et relances automatiques</h2>
@@ -1613,7 +1722,7 @@
     </section>
 
     <!-- Collecte - Detail: Donnees fiabilisees -->
-    <section class="slide" data-slide="26" data-chapter="collecte-3">
+    <section class="slide" data-slide="27" data-chapter="collecte-3">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Données fiabilisées et prêtes à intégrer</h2>
@@ -1633,7 +1742,7 @@
     </section>
 
     <!-- Collecte - Detail: Workflow -->
-    <section class="slide" data-slide="27" data-chapter="collecte-4">
+    <section class="slide" data-slide="28" data-chapter="collecte-4">
       <div class="slide-inner">
         <h1 class="slide-title">Du collaborateur à la paie, un flux maîtrisé</h1>
         <img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/collecte/workflow.png" alt="Workflow Ayming Collecte" style="width:100%; max-width:1100px;">
@@ -1642,7 +1751,7 @@
     </section>
 
     <!-- Collecte - Options -->
-    <section class="slide" data-slide="28" style="background: var(--bg-light);">
+    <section class="slide" data-slide="29" style="background: var(--bg-light);">
       <div class="slide-inner">
         <h1 class="slide-title">
           Options pour aller<br>
@@ -1688,7 +1797,7 @@
     </section>
 
     <!-- Collecte - ICP -->
-    <section class="slide" data-slide="29">
+    <section class="slide slide-icp" data-slide="30">
       <div class="slide-inner">
         <div class="icp-layout">
           <h2 class="icp-title">Ayming Collecte est conçu pour qui ?</h2>
@@ -1719,7 +1828,7 @@
     <!-- ========================================== -->
 
     <!-- 20. Acciline+ - Chapter -->
-    <section class="slide chapter" data-slide="30">
+    <section class="slide chapter" data-slide="31">
       <div class="chapter-layout">
         <div class="chapter-left">
           <div class="chapter-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/acciline-logo.svg" alt="Acciline+"></div>
@@ -1732,7 +1841,7 @@
     </section>
 
     <!-- Acciline+ - Struggles -->
-    <section class="slide" data-slide="31">
+    <section class="slide" data-slide="32">
       <div class="slide-inner">
         <h1 class="slide-title">La prévention des risques, encore trop artisanale</h1>
         <div class="struggles-grid">
@@ -1757,7 +1866,7 @@
     </section>
 
     <!-- Acciline+ - C'est quoi -->
-    <section class="slide slide-introduction" data-slide="32">
+    <section class="slide slide-introduction" data-slide="33">
       <div class="slide-inner">
         <div class="intro-hero">
           <div class="intro-hero-collage">
@@ -1779,14 +1888,14 @@
           </div>
         </div>
         <div class="intro-content">
-          <p class="intro-pitch">Acciline+ est une plateforme SaaS dédiée à la gestion HSE et à la prévention des risques professionnels.</p>
+          <p class="intro-pitch">Acciline+ est une plateforme de prévention des risques qui permet aux préventeurs et responsables de site de gérer la santé et la sécurité au travail.</p>
         </div>
       </div>
     </section>
 
 
     <!-- 25. Acciline+ - Value Overview -->
-    <section class="slide" data-slide="33">
+    <section class="slide" data-slide="34">
       <div class="slide-inner">
         <h1 class="slide-title">Simplifier la gestion des risques professionnels</h1>
         <div class="feature-grid-6">
@@ -1820,7 +1929,7 @@
     </section>
 
     <!-- 22. Acciline+ - Detail: Évaluation des risques -->
-    <section class="slide" data-slide="34" data-chapter="acciline-1">
+    <section class="slide" data-slide="35" data-chapter="acciline-1">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Évaluation des risques</h2>
@@ -1842,7 +1951,7 @@
     </section>
 
     <!-- 23. Acciline+ - Detail: Gestion des événements -->
-    <section class="slide" data-slide="35" data-chapter="acciline-2">
+    <section class="slide" data-slide="36" data-chapter="acciline-2">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Gestion des événements</h2>
@@ -1864,7 +1973,7 @@
     </section>
 
     <!-- 24. Acciline+ - Detail: Plans d'actions -->
-    <section class="slide" data-slide="36" data-chapter="acciline-3">
+    <section class="slide" data-slide="37" data-chapter="acciline-3">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Plans d'actions</h2>
@@ -1885,7 +1994,7 @@
     </section>
 
     <!-- 25. Acciline+ - Detail: Audit & inspection -->
-    <section class="slide" data-slide="37" data-chapter="acciline-4">
+    <section class="slide" data-slide="38" data-chapter="acciline-4">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Audit &amp; inspection</h2>
@@ -1907,7 +2016,7 @@
     </section>
 
     <!-- 26. Acciline+ - Detail: Gestion EPI/EPC -->
-    <section class="slide" data-slide="38" data-chapter="acciline-5">
+    <section class="slide" data-slide="39" data-chapter="acciline-5">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Gestion EPI/EPC</h2>
@@ -1928,7 +2037,7 @@
     </section>
 
     <!-- 27. Acciline+ - Detail: Formation & certifications -->
-    <section class="slide" data-slide="39" data-chapter="acciline-6">
+    <section class="slide" data-slide="40" data-chapter="acciline-6">
       <div class="value-detail-layout">
         <div class="value-detail-content">
           <h2>Formation &amp; certifications</h2>
@@ -1949,7 +2058,7 @@
     </section>
 
     <!-- Acciline+ - APP & Analytics Overview -->
-    <section class="slide dual-panel-slide" data-slide="40">
+    <section class="slide dual-panel-slide" data-slide="41">
       <div class="dual-panel-layout">
         <!-- Left: Acciline+ APP -->
         <div class="dual-panel dual-panel-left">
@@ -2024,7 +2133,7 @@
     </section>
 
     <!-- Acciline+ - ICP -->
-    <section class="slide" data-slide="41">
+    <section class="slide slide-icp" data-slide="42">
       <div class="slide-inner">
         <div class="icp-layout">
           <h2 class="icp-title">Acciline+ est conçu pour qui ?</h2>
@@ -2055,11 +2164,11 @@
     <!-- ========================================== -->
 
     <!-- 29. APP CARD: MAP -->
-    <section class="slide" data-slide="42">
+    <section class="slide" data-slide="43">
       <div class="slide-inner" style="align-items:stretch">
         <div class="tool-detail-header">
           <div class="header-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/map-logo.svg" alt="Ayming MAP"></div>
-          <span class="tool-oneliner">SaaS de cartographie et pilotage de la fiscalité locale</span>
+          <span class="tool-oneliner">Plateforme de gestion du parc immobilier pour piloter la fiscalité locale</span>
         </div>
         <div class="tool-detail-layout">
           <div>
@@ -2091,11 +2200,11 @@
     </section>
 
     <!-- 30. APP CARD: DRIVE -->
-    <section class="slide" data-slide="43">
+    <section class="slide" data-slide="44">
       <div class="slide-inner" style="align-items:stretch">
         <div class="tool-detail-header">
           <div class="header-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/drive-logo.svg" alt="Ayming Drive"></div>
-          <span class="tool-oneliner">Plateforme sécurisée de gestion et partage documentaire</span>
+          <span class="tool-oneliner">Plateforme collaborative pour piloter ensemble le Crédit d'Impôt Recherche</span>
         </div>
         <div class="tool-detail-layout">
           <div>
@@ -2128,17 +2237,17 @@
     </section>
 
     <!-- 31. APP CARD: COLLECTE -->
-    <section class="slide" data-slide="44">
+    <section class="slide" data-slide="45">
       <div class="slide-inner" style="align-items:stretch">
         <div class="tool-detail-header">
           <div class="header-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/collecte-logo.svg" alt="Ayming Collecte"></div>
-          <span class="tool-oneliner">Plateforme digitale de collecte structurée de données clients</span>
+          <span class="tool-oneliner">Centralise la réception, le contrôle et la transmission des arrêts de travail</span>
         </div>
         <div class="tool-detail-layout">
           <div>
             <div class="tool-col-title prob-label"><span class="pip-sm"></span>Le problème</div>
             <ul class="pain-list">
-              <li>Collecte massive de données par mission (AT/MP, IJSS, fiscalité...)</li>
+              <li>Collecte d'arrêts de travail par mission, et optionnellement d'autres documents</li>
               <li>Emails qui s'accumulent, fichiers qui arrivent en vrac</li>
               <li>Relances manuelles, données souvent incomplètes</li>
               <li>Missions qui prennent du retard faute d'informations</li>
@@ -2158,18 +2267,18 @@
         </div>
         <div class="tool-footer">
           <span class="foot-label">Cible</span>
-          <span class="audience-badge">Consultants Ayming</span><span class="audience-badge">Équipes BPO</span><span class="audience-badge">Dir. RH &amp; Finance</span><span class="audience-badge">Clients multi-sites</span>
+          <span class="audience-badge">Consultants Ayming</span><span class="audience-badge">Équipes BPO</span><span class="audience-badge">Collaborateurs</span><span class="audience-badge">Dir. RH &amp; Finance</span>
           <span class="qt">"Notre plateforme digitale pour collecter les documents et données clients sans chaos."</span>
         </div>
       </div>
     </section>
 
     <!-- 32. APP CARD: ACCILINE+ -->
-    <section class="slide" data-slide="45">
+    <section class="slide" data-slide="46">
       <div class="slide-inner" style="align-items:stretch">
         <div class="tool-detail-header">
           <div class="header-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/offre-digital/logos/acciline-logo.svg" alt="Acciline+"></div>
-          <span class="tool-oneliner">Suite modulaire SaaS de gestion HSE et prévention des risques</span>
+          <span class="tool-oneliner">Plateforme de prévention des risques pour gérer la santé et sécurité au travail</span>
         </div>
         <div class="tool-detail-layout">
           <div>
@@ -2207,7 +2316,7 @@
     <!-- ===== CLOSING (slide 33) ===== -->
     <!-- ========================================== -->
 
-    <section class="slide" data-slide="46">
+    <section class="slide" data-slide="47">
       <div class="slide-inner">
         <h1 class="slide-title">Prochaines etapes</h1>
 
@@ -2240,7 +2349,7 @@
     </section>
 
     <!-- THANK YOU -->
-    <section class="slide closing" data-slide="47">
+    <section class="slide closing" data-slide="48">
       <div class="closing-layout">
         <div class="closing-logo"><img src="https://raw.githubusercontent.com/ayming-france/assets/main/logos/ayming-logo.png" alt="Ayming"></div>
         <h2>Merci !</h2>
@@ -2375,13 +2484,13 @@
 
     // Easter eggs - E key triggers the right one based on current slide
     const eggs = {
-      '1': document.getElementById('easter-egg-saas'),   // Solutions SaaS
-      '10': document.getElementById('easter-egg-map'),    // Last MAP slide
-      '19': document.getElementById('easter-egg-drive'),  // Last Drive slide
-      '29': document.getElementById('easter-egg-collecte'), // Last Collecte slide
-      '41': document.getElementById('easter-egg-acciline'), // Last Acciline slide
-      '46': document.getElementById('easter-egg-steps'),   // Prochaines etapes
-      '47': document.getElementById('easter-egg')         // Merci slide
+      '2': document.getElementById('easter-egg-saas'),   // Solutions SaaS
+      '11': document.getElementById('easter-egg-map'),    // Last MAP slide
+      '20': document.getElementById('easter-egg-drive'),  // Last Drive slide
+      '30': document.getElementById('easter-egg-collecte'), // Last Collecte slide
+      '42': document.getElementById('easter-egg-acciline'), // Last Acciline slide
+      '47': document.getElementById('easter-egg-steps'),   // Prochaines etapes
+      '48': document.getElementById('easter-egg')         // Merci slide
     };
     const allEggs = Object.values(eggs);
     function closeAllEggs() { allEggs.forEach(el => el.classList.remove('visible')); }
@@ -2390,7 +2499,7 @@
 
     function triggerEasterEgg() {
       const ds = slides[currentSlide].dataset.slide;
-      if (ds === '47') { launchConfetti(); }
+      if (ds === '48') { launchConfetti(); }
       if (eggs[ds]) eggs[ds].classList.toggle('visible');
     }
 
